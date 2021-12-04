@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `couponsdb`.`coupon` (
   `start_date` DATE NULL DEFAULT NULL,
   `expiration_date` DATE NULL DEFAULT NULL,
   `store_id` INT NOT NULL,
+  `discount` INT NULL DEFAULT NULL,
   PRIMARY KEY (`coupon_id`),
   INDEX `fk_coupon_store_idx` (`store_id` ASC) VISIBLE,
   CONSTRAINT `fk_coupon_store`

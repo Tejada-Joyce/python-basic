@@ -15,13 +15,13 @@ following questions to the best of your knowledge.)
     It will help people find useful coupons when buying in specific stores.
 
 3. What will you learn from developing this program?
-    I will learn to use the pandas module and gain more practice with
+    I will learn to use the mysql.connector module and gain more practice with
     exception handling and testing.
 
 4. What Python modules will your program use? (Some examples are: csv,
 datetime, functools, matplotlib, math, pandas, pytest, random, requests,
 and tkinter.)
-    pandas or csv, pytest, datetime
+    pytest, datetime, mysql.connector
 
 5. Will you separate your Python program into functions that each
 perform a single task?
