@@ -9,7 +9,7 @@ supervisors know what we intend to do. Please answer each of the
 following questions to the best of your knowledge.)
 
 1. What is the title of your program?
-    Coupons finder
+    Coupons Finder
 
 2. What real world problem will your program address or help to solve?
     It will help people find useful coupons when buying in specific stores.
