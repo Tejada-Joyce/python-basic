@@ -61,7 +61,6 @@ def create_available_coupons_list(store_name, date):
 
     coupons_list = get_coupons_by_store(
         store_name, date)
-    print(coupons_list)
     if len(coupons_list) == 0:
         available_coupons_list = "We are sorry. There are no coupons available for that store at this moment."
     else:
