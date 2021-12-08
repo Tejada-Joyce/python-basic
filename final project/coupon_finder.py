@@ -21,16 +21,18 @@ def main():
 
         if store_name:
             # When using datetime.now(), we need to use datetime.datetime
-            date = datetime.datetime.date(datetime.datetime.now())
+            # date = datetime.datetime.date(datetime.datetime.now())
 
             # When we pass a specific date, we only use datetime once
-            # date = datetime.date(2022, 2, 11)
+            date = datetime.date(2022, 2, 28)
 
             # Print available coupons taking today's day as the reference
-            print_available_coupons(store_name, date)
+            # print_available_coupons(store_name, date)
+            print(create_available_coupons_list(store_name, date))
+
         else:
             print("We are sorry. We don't work with that store at the present time, but here is the list of stores we have available:")
-            print_stores()
+            print(create_stores_list())
 
     except ValueError as error:
         print(type(error).__name__, error, sep=": ")
@@ -52,7 +54,7 @@ def check_existing_store(store_name):
         return False
 
 
-def print_available_coupons(store_name, date):
+def create_available_coupons_list(store_name, date):
     """
     Prints available coupons for a specific store
     according to the date
@@ -62,26 +64,36 @@ def print_available_coupons(store_name, date):
     EXPIRATION_DATE = 3
     DISCOUNT = 5
 
+    available_coupons_list = ""
+
     coupons_list = get_coupons_by_store(
         store_name.upper(), date, connection_db)
     if len(coupons_list) == 0:
-        print("We are sorry. There are no coupons available for that store at this moment.")
+        available_coupons_list = "We are sorry. There are no coupons available for that store at this moment."
     else:
-        print("Good news! We found these coupons for you:")
+        available_coupons_list = "Good news! We found these coupons for you:"
         for coupon_info in coupons_list:
-            text = "\t{} gets you {}% OFF. Valid from {:%B %e, %Y} to {:%B %e, %Y}"
-            print(text.format(
-                coupon_info[COUPON_CODE], coupon_info[DISCOUNT], coupon_info[START_DATE], coupon_info[EXPIRATION_DATE]).expandtabs(2))
+            text = "\n\t{} gets you {}% OFF. Valid from {:%B %e, %Y} to {:%B %e, %Y}"
+            available_coupons_list += text.format(
+                coupon_info[COUPON_CODE], coupon_info[DISCOUNT], coupon_info[START_DATE], coupon_info[EXPIRATION_DATE]).expandtabs(2)
+
+    return available_coupons_list
 
 
-def print_stores():
+def create_stores_list():
     """ 
     Prints list of stores
     """
     stores = get_stores(connection_db)
-
+    length = len(stores)
+    store_list = ""
     for store in stores:
-        print(f"\t{store[STORE_NAME_INDEX]}".expandtabs(2))
+        if store != stores[length-1]:
+            store_list += f"\t{store[STORE_NAME_INDEX]}\n".expandtabs(2)
+        else:
+            store_list += f"\t{store[STORE_NAME_INDEX]}".expandtabs(2)
+
+    return store_list
 
 
 # These lines make sure main doesn't run automatically in the test file.
