@@ -10,7 +10,8 @@ def get_coupons_by_store(store_name, date):
     """
     Parameters
         - store_name: The name of the store with no specific format
-        - date: The date formated with datetime.date correctly
+        - date: The date formated with datetime.date correctly or the regular format "YYYY-MM-DD"
+                Ex. datetime.date(2022, 1, 10) or 2022-1-10 or 2022-01-10
     Return a list of tuples with the coupons' information according 
     to the store and date passed
     """

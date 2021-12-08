@@ -55,7 +55,7 @@ def test_create_available_coupons_list():
     """
 
     # Testing AT&T and HP "on" Dec 6, 2021
-    date1 = datetime.date(2021, 12, 6)
+    date1 = "2021-12-6"
 
     result1 = "Good news! We found these coupons for you:"
     result1 += "\n\tBOHTXP35 gets you 15% OFF. Valid from November 17, 2021 to December 11, 2021"
@@ -69,7 +69,7 @@ def test_create_available_coupons_list():
     assert create_available_coupons_list("hp", date1) == result2
 
     # Testing Walmart and HBO "on" Jan 2, 2022
-    date2 = datetime.date(2022, 1, 2)
+    date2 = "2022-1-2"
 
     result3 = "Good news! We found these coupons for you:"
     result3 += "\n\tEFBIHZ99 gets you 20% OFF. Valid from December 27, 2021 to January  7, 2022"
@@ -83,7 +83,7 @@ def test_create_available_coupons_list():
     assert create_available_coupons_list("HBO", date2) == result4.expandtabs(2)
 
     # Testing Best Buy and Sonic "on" Feb 28, 2022
-    date3 = datetime.date(2022, 2, 28)
+    date3 = "2022-2-28"
 
     result5 = "We are sorry. There are no coupons available for that store at this moment."
 
@@ -127,7 +127,7 @@ def test_get_coupons_by_store():
                 (4, 'OREWNZ13', datetime.date(2021, 12, 15), datetime.date(2022, 1, 8), 14, 20)]
 
     assert get_coupons_by_store(
-        "Hulu", datetime.date(2021, 12, 15)) == coupons1
+        "Hulu", "2021-12-15") == coupons1
 
     # Testing WinCo Foods "on" Jan 10, 2022
     coupons2 = [(44, 'IQCFGR52', datetime.date(2022, 1, 2),
@@ -146,7 +146,7 @@ def test_get_coupons_by_store():
         "AmaZoN", datetime.date(2022, 2, 1)) == coupons3
 
     """
-    Tests with expected empty results 
+    Tests with expected empty results
     """
     coupons4 = []
 
@@ -179,7 +179,6 @@ def test_get_stores():
               ('AT&T',), ('GameStop',)]
 
     assert get_stores() == stores
-
 
     # Call the main function that is part of pytest so that
     # the test functions in this file will start executing.
