@@ -1,11 +1,8 @@
 # from datetime import datetime
 import datetime
-import connection
 from coupons_model import *
 
 STORE_NAME_INDEX = 0
-
-connection_db = connection.create_connection()
 
 
 def main():
@@ -21,10 +18,10 @@ def main():
 
         if store_name:
             # When using datetime.now(), we need to use datetime.datetime
-            # date = datetime.datetime.date(datetime.datetime.now())
+            date = datetime.datetime.date(datetime.datetime.now())
 
             # When we pass a specific date, we only use datetime once
-            date = datetime.date(2022, 2, 28)
+            # date = datetime.date(2022, 1, 10)
 
             # Print available coupons taking today's day as the reference
             # print_available_coupons(store_name, date)
@@ -42,7 +39,7 @@ def check_existing_store(store_name):
     """ 
     Checks if the store name exists in database
     """
-    stores = get_stores(connection_db)
+    stores = get_stores()
     stores_list = []
     for store in stores:
         store_dbname = store[STORE_NAME_INDEX]
@@ -56,8 +53,8 @@ def check_existing_store(store_name):
 
 def create_available_coupons_list(store_name, date):
     """
-    Prints available coupons for a specific store
-    according to the date
+    Creates a string with the list of available coupons 
+    for a specific store according to the date
     """
     COUPON_CODE = 1
     START_DATE = 2
@@ -67,7 +64,7 @@ def create_available_coupons_list(store_name, date):
     available_coupons_list = ""
 
     coupons_list = get_coupons_by_store(
-        store_name.upper(), date, connection_db)
+        store_name, date)
     if len(coupons_list) == 0:
         available_coupons_list = "We are sorry. There are no coupons available for that store at this moment."
     else:
@@ -82,9 +79,9 @@ def create_available_coupons_list(store_name, date):
 
 def create_stores_list():
     """ 
-    Prints list of stores
+    Create a stringwith the list of stores
     """
-    stores = get_stores(connection_db)
+    stores = get_stores()
     length = len(stores)
     store_list = ""
     for store in stores:
