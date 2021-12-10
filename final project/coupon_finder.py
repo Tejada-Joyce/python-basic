@@ -6,26 +6,34 @@ STORE_NAME_INDEX = 0
 
 def main():
     try:
-        # Print title
-        print("Coupons Finder")
+        # Print welcome
+        print("\nWelcome to Coupons Finder!")
 
         # Get user's input
         store_name = input("Please enter the name of the store: ")
 
-        # Check if the store name exists in database
-        store_name = check_existing_store(store_name)
+        ask = True
 
-        if store_name:
-            # When using datetime.now(), we need to use datetime.datetime
-            date = datetime.datetime.date(datetime.datetime.now())
+        while ask:
+            # Check if the store name exists in database
+            store_name = check_existing_store(store_name)
 
-            # Print available coupons taking today's day as the reference
-            # print_available_coupons(store_name, date)
-            print(create_available_coupons_list(store_name, date))
+            if store_name:
+                # Stop loop
+                ask = False
 
-        else:
-            print("We are sorry. We don't work with that store at the present time, but here is the list of stores we have available:")
-            print(create_stores_list())
+                # When using datetime.now(), we need to use datetime.datetime
+                date = datetime.datetime.date(datetime.datetime.now())
+
+                # Print available coupons taking today's day as the reference
+                # print_available_coupons(store_name, date)
+                print(create_available_coupons_list(store_name, date))
+
+            else:
+                print("We are sorry. We don't work with that store at the present time, but here is the list of stores we have available:")
+                print(create_stores_list())
+                store_name = input(
+                    "\nPlease enter the name of an available store: ")
 
     except (ValueError, TypeError) as error:
         print(type(error).__name__, error, sep=": ")
