@@ -1,4 +1,5 @@
 import connection
+import mysql.connector
 
 # Create connection to database
 connection_db = connection.create_connection()
@@ -15,27 +16,37 @@ def get_coupons_by_store(store_name, date):
     Return a list of tuples with the coupons' information according 
     to the store and date passed
     """
-    result = None
-    query = ("SELECT * FROM coupon c "
-             "WHERE c.store_id IN (SELECT store_id FROM store WHERE store_name = %s)"
-             "AND %s BETWEEN c.start_date AND c.expiration_date "
-             "ORDER BY c.expiration_date"
-             )
-    with connection_db.cursor() as cursor:
-        cursor.execute(query, (store_name, date))
-        result = cursor.fetchall()
-        cursor.close()
-    return result
+    try:
+        result = None
+        query = ("SELECT * FROM coupon c "
+                 "WHERE c.store_id IN (SELECT store_id FROM store WHERE store_name = %s)"
+                 "AND %s BETWEEN c.start_date AND c.expiration_date "
+                 "ORDER BY c.expiration_date"
+                 )
+        with connection_db.cursor() as cursor:
+            cursor.execute(query, (store_name, date))
+            result = cursor.fetchall()
+            cursor.close()
+        return result
+    # This exception is raised on programming errors, for example when
+    # you have a syntax error in your SQL or a table was not found.
+    except mysql.connector.ProgrammingError as err:
+        print("Error: {}".format(err))
 
 
 def get_stores():
     """
     Return a list of tuples with the names of the stores
     """
-    result = None
-    query = ("SELECT store_name FROM store")
-    with connection_db.cursor() as cursor:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        cursor.close()
-    return result
+    try:
+        result = None
+        query = ("SELECT store_name FROM store")
+        with connection_db.cursor() as cursor:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            cursor.close()
+        return result
+    # This exception is raised on programming errors, for example when
+    # you have a syntax error in your SQL or a table was not found.
+    except mysql.connector.ProgrammingError as err:
+        print("Error: {}".format(err))

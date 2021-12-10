@@ -27,7 +27,7 @@ def main():
             print("We are sorry. We don't work with that store at the present time, but here is the list of stores we have available:")
             print(create_stores_list())
 
-    except ValueError as error:
+    except (ValueError, TypeError) as error:
         print(type(error).__name__, error, sep=": ")
 
 
