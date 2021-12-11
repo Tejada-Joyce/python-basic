@@ -59,7 +59,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-use couponsdb;
+USE couponsdb;
+
+-- -----------------------------------------------------
+-- INSERT data into store table
+-- -----------------------------------------------------
 
 INSERT INTO store
 VALUES 
@@ -80,9 +84,10 @@ VALUES
 (15, 'AT&T'),
 (16, 'GameStop');
 
--- select * from store;
+-- -----------------------------------------------------
+-- INSERT data into coupon table
+-- -----------------------------------------------------
 
--- select * from coupon;
 INSERT INTO coupon
 VALUES
 (1, "TUXLNH57", "2022-03-23", "2022-04-21", 3, 10),
