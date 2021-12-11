@@ -1,5 +1,5 @@
 import datetime
-from coupon_finder import *
+from coupons_finder import *
 from coupons_model import *
 import pytest
 
