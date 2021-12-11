@@ -38,7 +38,7 @@ unavailable_stores = [
 
 def test_check_existing_store():
     """
-    Test check_existing_store from coupon_finder file
+    Test check_existing_store from coupons_finder file
     """
 
     # store_name = random.choice(stores)
@@ -51,7 +51,7 @@ def test_check_existing_store():
 
 def test_create_available_coupons_info():
     """
-    Test create_available_coupons_info from coupon_finder file
+    Test create_available_coupons_info from coupons_finder file
     """
 
     # Testing AT&T and HP "on" Dec 6, 2021
@@ -98,7 +98,7 @@ def test_create_available_coupons_info():
 
 def test_create_stores_list():
     """
-    Test create_stores_list from coupon_finder file
+    Test create_stores_list from coupons_finder file
     """
 
     store_list = ""
