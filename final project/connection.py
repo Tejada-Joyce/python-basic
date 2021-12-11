@@ -1,12 +1,13 @@
 # https://realpython.com/python-mysql/#reading-records-from-the-database
 
 import mysql.connector
-
 from mysql.connector import Error
 
 
 def create_connection():
     try:
+        # If you are testing this, you would need to change
+        # the host, database, user, or password as needed
         connection = mysql.connector.connect(host='localhost',
                                              database='couponsdb',
                                              user='root',

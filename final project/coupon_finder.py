@@ -27,7 +27,7 @@ def main():
 
                 # Print available coupons taking today's day as the reference
                 # print_available_coupons(store_name, date)
-                print(create_available_coupons_list(store_name, date))
+                print(create_available_coupons_info(store_name, date))
 
             else:
                 print("We are sorry. We don't work with that store at the present time, but here is the list of stores we have available:")
@@ -55,9 +55,9 @@ def check_existing_store(store_name):
         return False
 
 
-def create_available_coupons_list(store_name, date):
+def create_available_coupons_info(store_name, date):
     """
-    Creates a string with the list of available coupons 
+    Creates a string with the info of available coupons 
     for a specific store according to the date
     """
     COUPON_CODE = 1
@@ -65,25 +65,25 @@ def create_available_coupons_list(store_name, date):
     EXPIRATION_DATE = 3
     DISCOUNT = 5
 
-    available_coupons_list = ""
+    available_coupons_info = ""
 
     coupons_list = get_coupons_by_store(
         store_name, date)
     if len(coupons_list) == 0:
-        available_coupons_list = "We are sorry. There are no coupons available for that store at this moment."
+        available_coupons_info = "We are sorry. There are no coupons available for that store at this moment."
     else:
-        available_coupons_list = "Good news! We found these coupons for you:"
+        available_coupons_info = "Good news! We found these coupons for you:"
         for coupon_info in coupons_list:
             text = "\n\t{} gets you {}% OFF. Valid from {:%B %e, %Y} to {:%B %e, %Y}"
-            available_coupons_list += text.format(
+            available_coupons_info += text.format(
                 coupon_info[COUPON_CODE], coupon_info[DISCOUNT], coupon_info[START_DATE], coupon_info[EXPIRATION_DATE]).expandtabs(2)
 
-    return available_coupons_list
+    return available_coupons_info
 
 
 def create_stores_list():
     """ 
-    Create a stringwith the list of stores
+    Create a string with the list of stores
     """
     stores = get_stores()
     length = len(stores)
